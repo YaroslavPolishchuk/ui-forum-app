@@ -1,0 +1,56 @@
+<!-- Register -->
+<div class="container">
+    <div class="field-validation">
+        <form #form="ngForm">
+            <table class="forum-table">
+                <tr>
+                    <th colspan="2">Регистрация</th>
+                </tr>
+
+                <tr class="row-1">
+                    <td class="col-forum">
+                        <div class="forum-title">Имя пользователя</div>
+                        <div class="forum-desc">Будет отображаться на форуме</div>
+                    </td>
+                    <td>
+                        <input type="text" name="username" [(ngModel)]="username" required>
+                    </td>
+                </tr>
+
+                <tr class="row-2">
+                    <td class="col-forum">
+                        <div class="forum-title">Email</div>
+                        <div class="forum-desc">Для восстановления доступа</div>
+                    </td>
+                    <td>
+                        <input type="email" name="email" [(ngModel)]="email" required>
+                    </td>
+                </tr>
+
+                <tr class="row-1">
+                    <td class="col-forum">
+                        <div class="forum-title">Пароль</div>
+                        <div class="forum-desc">Минимум 6 символов</div>
+                    </td>
+                    <td>
+                        <input type="password" name="password" [(ngModel)]="password" required maxlength="6">
+                    </td>
+                </tr>
+
+                <tr class="row-2">
+                    <td colspan="2" style="text-align:right">
+                        <div class="auth">
+                            <button class="btn-register" (click)="onRegisterClick(form)">
+                                Зарегистрироваться
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <!-- <div class="error-message" *ngIf="showWarning">
+        
+        Вы не заполнили форму регистрации
+    </div> -->
+</div>

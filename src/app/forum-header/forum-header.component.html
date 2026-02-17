@@ -1,0 +1,31 @@
+<!-- Header -->
+<div class="header">
+    <div class="logo-placeholder">
+        <a routerLink="/">
+            <img src="assets/logo-white.png" alt="Bicycle Forum" />
+        </a>
+    </div>
+    <div class="field-validation">
+
+        <div class="auth" *ngIf="!isLoggedIn(); else loggedInBlock">
+            <form #form="ngForm">
+                Логин:
+                <input type="text" name="loginValue" [(ngModel)]="loginValue" required="">
+                Пароль:
+                <input type="password" name="passwordValue" [(ngModel)]="passwordValue" required="">
+                <button class="btn-login" (click)="onLoginClick(form)">Войти</button>
+            </form>
+            <button class="btn-register" (click)="onRegisterClick()">Регистрация</button>
+        </div>
+    </div>
+    <div class="error-message" *ngIf="error">
+        {{ error }}
+    </div>
+
+    <ng-template #loggedInBlock>
+        <div class="auth">
+            <span>Привет, {{ username }}!</span>
+            <button class="btn-login">Выйти</button>
+        </div>
+    </ng-template>
+</div>

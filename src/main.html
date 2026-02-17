@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Форум</title>
+
+<style>
+/* ====== Base ====== */
+body {
+    margin: 0;
+    font-family: Tahoma, Verdana, Arial, sans-serif;
+    font-size: 14px;
+    background: #e7efd9;
+    color: #2f3b2f;
+}
+
+/* ====== Header ====== */
+.header {
+    box-shadow:
+        inset 0 -1px 0 #c8d8b3,
+        0 2px 4px rgba(0,0,0,0.12);
+    max-width: 98%;    
+    background: linear-gradient(#c4d8bf, #86b350);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-placeholder {
+    width: 220px;
+    height: 40px;        
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.auth {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 13px;
+    font-weight:600;
+    
+}
+
+.auth input {
+    padding: 3px 5px;
+    margin-left: 6px;
+    border: 1px solid #b9c9a5;
+    background: #eaeaea;
+}
+.auth .btn-login {
+    border: 1px solid #4b5f38;
+    background: linear-gradient(#aece97, #4a672c);
+    box-shadow:
+        inset 0 1px 0 #ffffff,
+        0 1px 2px rgba(0,0,0,0.18);
+}
+.auth .btn-register {
+    border: 1px solid #696d18;
+    background: linear-gradient(#ccd25b, #636809);
+    box-shadow:
+        inset 0 1px 0 #ffffff,
+        0 1px 2px rgba(0,0,0,0.18);
+}
+
+.auth button {
+    margin-left: 6px;
+    padding: 5px 14px;
+    border: 1px solid #8fa57c;
+    background: linear-gradient(#f1f7e8, #cfe0b8);
+    box-shadow:
+        inset 0 1px 0 #ffffff,
+        0 1px 2px rgba(0,0,0,0.15);
+    cursor: pointer;
+    font-size: 13px;
+    color: #ffffff;
+}
+
+.auth button:active {
+    background: linear-gradient(#cfe0b8, #f1f7e8);
+    box-shadow:
+        inset 0 2px 3px rgba(0,0,0,0.2);
+}
+
+/* ====== Main ====== */
+.container {
+    max-width: 97%;
+    margin: 20px auto;
+    background: #eef5e5;
+    box-shadow:
+        inset 0 1px 0 #ffffff,
+        0 3px 6px rgba(0,0,0,0.12);
+    /* background: #c6e0a3; */
+}
+
+/* Table */
+.forum-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.forum-table td + td,
+.forum-table th + th {
+    border-left: 1px solid #d2dfc2;
+}
+.forum-table th {
+    text-align: left;
+    font-weight: normal;
+    font-size: 13px;
+    padding: 10px;
+    background: #dde9cd;
+    color: #425442;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.forum-table td {
+    padding: 12px 10px;
+    vertical-align: top;
+    border-top: 1px solid #d2dfc2;
+    border-bottom: 1px solid #d2dfc2;
+}
+
+/* Columns */
+.col-forum { width: 55%;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }
+.col-topics { width: 10%; text-align: center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+.col-posts { width: 10%; text-align: center;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+.col-last { width: 25%;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+/* Forum title + desc */
+.forum-title {
+    font-size: 15px;
+    color: #2f4a2f;
+}
+
+.forum-desc {
+    font-size: 12px;
+    color: #6a7c64;
+    margin-top: 4px;
+}
+
+/* Last post */
+.last-title {
+    font-size: 13px;
+}
+
+.last-meta {
+    font-size: 12px;
+    color: #6f806a;
+    margin-top: 3px;
+}
+
+/* Alternating soft backgrounds */
+.row-1 { background: #eef5e5; }
+.row-2 { background: #e8f0dd; }
+
+/* ====== Footer ====== */
+.footer {
+    font-size: 12px;
+    color: #7a8a73;
+    text-align: center;
+    padding: 200px 0 16px;
+}
+.footer a {
+    color: #6b7d65;
+    text-decoration: none;
+    margin: 0 6px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div class="logo-placeholder">
+        <img src="assets/logo-white.png" alt="Bicycle Forum" />
+    </div>
+
+    <div class="auth">
+        Логин:
+        <input type="text">
+        Пароль:
+        <input type="password">
+        <button class="btn-login">Войти</button>
+        <button class="btn-register">Регистрация</button>
+    </div>
+</div>
+
+<!-- Main -->
+<div class="container">
+    <table class="forum-table">
+        <tr>
+            <th class="col-forum">Форумы</th>
+            <th class="col-topics">Темы</th>
+            <th class="col-posts">Сообщения</th>
+            <th class="col-last">Последнее сообщение</th>
+        </tr>
+
+        <tr class="row-1">
+            <td class="col-forum">
+                <div class="forum-title">Велосипеды и оборудование</div>
+                <div class="forum-desc">
+                    Выбор велосипедов, компонентов, настройка и обслуживание
+                </div>
+            </td>
+            <td class="col-topics">254</td>
+            <td class="col-posts">4320</td>
+            <td class="col-last">
+                <div class="last-title">Какую вилку выбрать?</div>
+                <div class="last-meta">Biker_22 · Сегодня, 12:45</div>
+            </td>
+        </tr>
+
+        <tr class="row-2">
+            <td class="col-forum">
+                <div class="forum-title">Покатушки и маршруты</div>
+                <div class="forum-desc">
+                    Совместные поездки, отчёты, карты и фотографии
+                </div>
+            </td>
+            <td class="col-topics">198</td>
+            <td class="col-posts">3567</td>
+            <td class="col-last">
+                <div class="last-title">Велопоход в Карпаты</div>
+                <div class="last-meta">Tourist · Вчера, 19:30</div>
+            </td>
+        </tr>
+
+        <tr class="row-1">
+            <td class="col-forum">
+                <div class="forum-title">Экстрим и даунхилл</div>
+                <div class="forum-desc">
+                    Прыжки, трассы, техника и безопасность
+                </div>
+            </td>           
+            <td class="col-topics">142</td>
+            <td class="col-posts">2789</td>
+            <td class="col-last">
+                <div class="last-title">Новое видео дропов</div>
+                <div class="last-meta">RiderX · 20.01.2022</div>
+            </td>
+        </tr>
+
+        <tr class="row-2">
+            <td class="col-forum">
+                <div class="forum-title">Здоровье и тренировки</div>
+                <div class="forum-desc">
+                    Физическая подготовка, питание и восстановление
+                </div>
+            </td>
+            <td class="col-topics">180</td>
+            <td class="col-posts">3102</td>
+            <td class="col-last">
+                <div class="last-title">Вредны ли энергетики?</div>
+                <div class="last-meta">AlexFit · 17.01.2022</div>
+            </td>
+        </tr>
+
+        <tr class="row-1">
+            <td class="col-forum">
+                <div class="forum-title">Куплю / Продам</div>
+                <div class="forum-desc">
+                    Велосипеды, запчасти, аксессуары
+                </div>
+            </td>
+            <td class="col-topics">376</td>
+            <td class="col-posts">5412</td>
+            <td class="col-last">
+                <div class="last-title">Продам раму Trek</div>
+                <div class="last-meta">VeloMan · Сегодня, 10:15</div>
+            </td>
+        </tr>
+
+        <tr class="row-2">
+            <td class="col-forum">
+                <div class="forum-title">Оффтопик / Общение</div>
+                <div class="forum-desc">
+                    Свободное общение и любые темы
+                </div>
+            </td>
+            <td class="col-topics">214</td>
+            <td class="col-posts">6988</td>
+            <td class="col-last">
+                <div class="last-title">Флудилка у костра</div>
+                <div class="last-meta">Smiley · Вчера, 21:05</div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <a href="#">Кто сейчас на форуме</a> ·
+    <a href="#">Статистика</a> ·
+    <a href="#">Правила форума</a><br><br>
+    © 2003–2006 Forum System
+</div>
+
+</body>
+</html>
