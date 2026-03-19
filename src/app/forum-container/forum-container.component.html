@@ -1,4 +1,3 @@
-
 <!-- Main -->
 <div class="container">
     <table class="forum-table">
@@ -9,94 +8,34 @@
             <th class="col-last">Последнее сообщение</th>
         </tr>
 
-        <tr class="row-1">
+        <tr [ngClass]="{'row-1': i % 2 === 0, 'row-2': i % 2 !== 0}" *ngFor="let forum of forums; let i = index">
             <td class="col-forum">
-                <div class="forum-title">Велосипеды и оборудование</div>
+                <div class="forum-title">
+                    <a [routerLink]="['/forum', forum.id]">{{ forum.title }}</a>
+                </div>
                 <div class="forum-desc">
-                    Выбор велосипедов, компонентов, настройка и обслуживание
+                    {{ forum.description }}
                 </div>
             </td>
-            <td class="col-topics">254</td>
-            <td class="col-posts">4320</td>
+            <td class="col-topics">{{ forum.topicCount || 0 }}</td>
+            <td class="col-posts">{{ forum.postCount || 0 }}</td>
             <td class="col-last">
-                <div class="last-title">Какую вилку выбрать?</div>
-                <div class="last-meta">Biker_22 · Сегодня, 12:45</div>
-            </td>
-        </tr>
-
-        <tr class="row-2">
-            <td class="col-forum">
-                <div class="forum-title">Покатушки и маршруты</div>
-                <div class="forum-desc">
-                    Совместные поездки, отчёты, карты и фотографии
-                </div>
-            </td>
-            <td class="col-topics">198</td>
-            <td class="col-posts">3567</td>
-            <td class="col-last">
-                <div class="last-title">Велопоход в Карпаты</div>
-                <div class="last-meta">Tourist · Вчера, 19:30</div>
-            </td>
-        </tr>
-
-        <tr class="row-1">
-            <td class="col-forum">
-                <div class="forum-title">Экстрим и даунхилл</div>
-                <div class="forum-desc">
-                    Прыжки, трассы, техника и безопасность
-                </div>
-            </td>           
-            <td class="col-topics">142</td>
-            <td class="col-posts">2789</td>
-            <td class="col-last">
-                <div class="last-title">Новое видео дропов</div>
-                <div class="last-meta">RiderX · 20.01.2022</div>
-            </td>
-        </tr>
-
-        <tr class="row-2">
-            <td class="col-forum">
-                <div class="forum-title">Здоровье и тренировки</div>
-                <div class="forum-desc">
-                    Физическая подготовка, питание и восстановление
-                </div>
-            </td>
-            <td class="col-topics">180</td>
-            <td class="col-posts">3102</td>
-            <td class="col-last">
-                <div class="last-title">Вредны ли энергетики?</div>
-                <div class="last-meta">AlexFit · 17.01.2022</div>
-            </td>
-        </tr>
-
-        <tr class="row-1">
-            <td class="col-forum">
-                <div class="forum-title">Куплю / Продам</div>
-                <div class="forum-desc">
-                    Велосипеды, запчасти, аксессуары
-                </div>
-            </td>
-            <td class="col-topics">376</td>
-            <td class="col-posts">5412</td>
-            <td class="col-last">
-                <div class="last-title">Продам раму Trek</div>
-                <div class="last-meta">VeloMan · Сегодня, 10:15</div>
-            </td>
-        </tr>
-
-        <tr class="row-2">
-            <td class="col-forum">
-                <div class="forum-title">Оффтопик / Общение</div>
-                <div class="forum-desc">
-                    Свободное общение и любые темы
-                </div>
-            </td>
-            <td class="col-topics">214</td>
-            <td class="col-posts">6988</td>
-            <td class="col-last">
-                <div class="last-title">Флудилка у костра</div>
-                <div class="last-meta">Smiley · Вчера, 21:05</div>
+                <ng-container *ngIf="forum.latestDiscussion; else noDiscussions">
+                    <div class="last-title">{{ forum.latestDiscussion.title }}</div>
+                    <div class="last-meta">{{ forum.latestDiscussion.authorName }} · {{ forum.latestDiscussion.createdAt
+                        | date: 'shortDate' }}</div>
+                </ng-container>
+                <ng-template #noDiscussions>
+                    <div class="last-meta">Нет обсуждений</div>
+                </ng-template>
             </td>
         </tr>
     </table>
+
+    <div *ngIf="loading" style="padding: 20px; text-align: center; color: #6a7c64;">
+        Загрузка форумов...
+    </div>
+    <div *ngIf="!loading && forums.length === 0" style="padding: 20px; text-align: center; color: #6a7c64;">
+        Пока нет доступных форумов!
+    </div>
 </div>

@@ -1,7 +1,7 @@
 <!-- Register -->
 <div class="container">
     <div class="field-validation">
-        <form #form="ngForm" >
+        <form #form="ngForm" [class.submitted]="isSubmitted" (ngSubmit)="onRegisterClick(form)">
             <table class="forum-table">
                 <tr>
                     <th colspan="2">Регистрация</th>
@@ -13,7 +13,8 @@
                         <div class="forum-desc">Будет отображаться на форуме</div>
                     </td>
                     <td>
-                        <input type="text" aria-label="username" name="username" [(ngModel)]="username" required (input)="onInputChange()">
+                        <input type="text" aria-label="username" name="username" [(ngModel)]="username" required
+                            (input)="onInputChange()">
                     </td>
                 </tr>
 
@@ -23,7 +24,8 @@
                         <div class="forum-desc">Для восстановления доступа</div>
                     </td>
                     <td>
-                        <input type="email" aria-label="email" name="email" [(ngModel)]="email" required email (input)="onInputChange()">
+                        <input type="email" aria-label="email" name="email" [(ngModel)]="email" required email
+                            (input)="onInputChange()">
                     </td>
                 </tr>
                 <tr class="row-1">
@@ -32,21 +34,35 @@
                         <div class="forum-desc">Минимум 6 символов</div>
                     </td>
                     <td>
-                        <input type="password" aria-label="password" name="password" [(ngModel)]="password" required minlength="3" (input)="onInputChange()">                        
+                        <input type="password" aria-label="password" name="password" [(ngModel)]="password" required
+                            minlength="3" (input)="onInputChange()">
                     </td>
                 </tr>
 
                 <tr class="row-2">
                     <td colspan="2" style="text-align:right">
                         <div class="auth">
-                            <button class="btn-register"
-                             aria-label="RegisterSubmit"
-                             (click)="onRegisterClick(form)" role="submit"
-                             [disabled]="form.invalid || status==='error'">
+                            <button class="btn-register" aria-label="RegisterSubmit" type="submit"
+                                [disabled]="status==='error'">
                                 Регистрация
                             </button>
-                            <div class="register-err" *ngIf="status === 'error'">{{message}}</div>
-                            <div class="register-success" *ngIf="status === 'success'">{{message}}</div>
+                            <div class="error-message" *ngIf="status === 'error'">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                </svg>
+                                <span>{{message}}</span>
+                            </div>
+                            <div class="success-message" *ngIf="status === 'success'">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <span>{{message}}</span>
+                            </div>
                         </div>
                     </td>
                 </tr>

@@ -53,12 +53,9 @@ body {
     background: #eaeaea;
 }
 
-.field-validation input.ng-invalid.ng-touched {
+form.submitted input.ng-invalid {
     border: 1px solid #cc3333;
     background: #fff0f0;
-    display: flex;
-    justify-content: space-between;
-
 }
 
 .auth .btn-login {
@@ -97,17 +94,42 @@ body {
 }
 
 .error-message {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(255, 0, 0, 0.85);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 13px;
+    background-color: #fef2f2;
+    border: 1px solid #f87171;
+    color: #991b1b;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
     z-index: 100;
     pointer-events: none;
+    animation: slideDownFadeIn 0.3s ease-out forwards;
+}
+
+.error-message svg {
+    width: 18px;
+    height: 18px;
+    color: #ef4444;
+}
+
+@keyframes slideDownFadeIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
 }
 
 /* ====== Main ====== */
@@ -277,4 +299,31 @@ body {
 .logout-icon {
     width: 14px;
     height: 14px;
+}
+
+.success-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+    z-index: 100;
+    pointer-events: none;
+    animation: slideDownFadeIn 0.3s ease-out forwards;
+}
+
+.success-message svg {
+    width: 18px;
+    height: 18px;
+    color: #28a745;
 }

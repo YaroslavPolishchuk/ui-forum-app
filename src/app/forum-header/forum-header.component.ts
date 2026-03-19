@@ -18,35 +18,39 @@ export class ForumHeaderComponent {
   loginValue = '';
   passwordValue = '';
   error = '';
-  isSubmitted=false;
+  isSubmitted = false;
 
   constructor(public authService: AuthService, private router: Router) { }
 
   onLoginClick(form: NgForm): void {
-    this.isSubmitted=true;
+    this.isSubmitted = true;
     if (form.invalid) {
-      console.log("Alert")
       setTimeout(() => {
-        this.isSubmitted=false;
+        this.isSubmitted = false;
       }, 2000)
       return;
     }
-    const loginData:LoginRequest={
-      username:this.loginValue,
-      password:this.passwordValue
+    const loginData: LoginRequest = {
+      username: this.loginValue,
+      password: this.passwordValue
     }
     this.authService.login(loginData).subscribe({
-        next:(response:LoginResponse) => {                 
-            console.log("Success");
-          },
-        error:(response)=>{
-          this.error=response.error;
-          setTimeout(() => {
-            this.error='';
-            form.reset();
-          }, 2000);
-        }
-      });
+      next: (response: LoginResponse) => {
+        console.log("Success");
+        this.isSubmitted = false;
+        form.reset();
+        form.resetForm();
+        this.router.navigate(['/']);
+      },
+      error: (response) => {
+        this.error = response.error;
+        setTimeout(() => {
+          this.error = '';
+          form.reset();
+          form.resetForm();
+        }, 2000);
+      }
+    });
   }
 
   onRegisterClick(): void {
@@ -58,9 +62,9 @@ export class ForumHeaderComponent {
   }
 
   isLoggedIn(): Boolean {
-  return this.authService.isLoggedIn();
-}
-get username(): string {
-  return this.authService.getusername();
-}
+    return this.authService.isLoggedIn();
+  }
+  get username(): string {
+    return this.authService.getusername();
+  }
 }
