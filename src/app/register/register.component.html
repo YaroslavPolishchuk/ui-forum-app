@@ -1,7 +1,7 @@
 <!-- Register -->
 <div class="container">
     <div class="field-validation">
-        <form #form="ngForm">
+        <form #form="ngForm" >
             <table class="forum-table">
                 <tr>
                     <th colspan="2">Регистрация</th>
@@ -13,7 +13,7 @@
                         <div class="forum-desc">Будет отображаться на форуме</div>
                     </td>
                     <td>
-                        <input type="text" name="username" [(ngModel)]="username" required>
+                        <input type="text" aria-label="username" name="username" [(ngModel)]="username" required (input)="onInputChange()">
                     </td>
                 </tr>
 
@@ -23,26 +23,30 @@
                         <div class="forum-desc">Для восстановления доступа</div>
                     </td>
                     <td>
-                        <input type="email" name="email" [(ngModel)]="email" required>
+                        <input type="email" aria-label="email" name="email" [(ngModel)]="email" required email (input)="onInputChange()">
                     </td>
                 </tr>
-
                 <tr class="row-1">
                     <td class="col-forum">
                         <div class="forum-title">Пароль</div>
                         <div class="forum-desc">Минимум 6 символов</div>
                     </td>
                     <td>
-                        <input type="password" name="password" [(ngModel)]="password" required maxlength="6">
+                        <input type="password" aria-label="password" name="password" [(ngModel)]="password" required minlength="3" (input)="onInputChange()">                        
                     </td>
                 </tr>
 
                 <tr class="row-2">
                     <td colspan="2" style="text-align:right">
                         <div class="auth">
-                            <button class="btn-register" (click)="onRegisterClick(form)">
-                                Зарегистрироваться
+                            <button class="btn-register"
+                             aria-label="RegisterSubmit"
+                             (click)="onRegisterClick(form)" role="submit"
+                             [disabled]="form.invalid || status==='error'">
+                                Регистрация
                             </button>
+                            <div class="register-err" *ngIf="status === 'error'">{{message}}</div>
+                            <div class="register-success" *ngIf="status === 'success'">{{message}}</div>
                         </div>
                     </td>
                 </tr>

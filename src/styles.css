@@ -1,74 +1,82 @@
 /* ====== Base ====== */
 body {
     margin: 0;
-    font-family: Tahoma, Verdana, Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 14px;
     background: #e7efd9;
     color: #2f3b2f;
 }
+
 .header {
     box-shadow:
         inset 0 -1px 0 #c8d8b3,
-        0 2px 4px rgba(0,0,0,0.12);
-    max-width: 98%;    
+        0 2px 4px rgba(0, 0, 0, 0.12);
+    max-width: 98%;
     background: linear-gradient(#c4d8bf, #86b350);
     padding: 14px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; 
+    position: relative;
 }
+
 .logo-placeholder {
     width: 220px;
-    height: 40px;        
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 13px;
 }
-.auth 
-{
+
+.auth {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 13px;
-    font-weight:600;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 10px;
-    flex-wrap: wrap;  
+    flex-wrap: wrap;
 }
+
 .auth form {
-  display: flex;       
-  align-items: center;
-  gap: 10px;  
-  flex-wrap: wrap;         
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
+
 .auth input {
     padding: 3px 5px;
     margin-left: 6px;
     border: 1px solid #b9c9a5;
     background: #eaeaea;
 }
+
 .field-validation input.ng-invalid.ng-touched {
-  border: 1px solid #cc3333;
-  background: #fff0f0;
-  display: flex;
-  justify-content: space-between;
+    border: 1px solid #cc3333;
+    background: #fff0f0;
+    display: flex;
+    justify-content: space-between;
 
 }
+
 .auth .btn-login {
     border: 1px solid #4b5f38;
     background: linear-gradient(#aece97, #4a672c);
     box-shadow:
         inset 0 1px 0 #ffffff,
-        0 1px 2px rgba(0,0,0,0.18);
+        0 1px 2px rgba(0, 0, 0, 0.18);
 }
+
 .auth .btn-register {
     border: 1px solid #696d18;
     background: linear-gradient(#ccd25b, #636809);
     box-shadow:
         inset 0 1px 0 #ffffff,
-        0 1px 2px rgba(0,0,0,0.18);
+        0 1px 2px rgba(0, 0, 0, 0.18);
 }
+
 .auth button {
     margin-left: 6px;
     padding: 5px 14px;
@@ -76,7 +84,7 @@ body {
     background: linear-gradient(#f1f7e8, #cfe0b8);
     box-shadow:
         inset 0 1px 0 #ffffff,
-        0 1px 2px rgba(0,0,0,0.15);
+        0 1px 2px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     font-size: 13px;
     color: #ffffff;
@@ -85,21 +93,21 @@ body {
 .auth button:active {
     background: linear-gradient(#cfe0b8, #f1f7e8);
     box-shadow:
-        inset 0 2px 3px rgba(0,0,0,0.2);
+        inset 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .error-message {
-  position: absolute; 
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(255, 0, 0, 0.85);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 13px;
-  z-index: 100;
-  pointer-events: none; 
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 0, 0, 0.85);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    z-index: 100;
+    pointer-events: none;
 }
 
 /* ====== Main ====== */
@@ -109,7 +117,7 @@ body {
     background: #eef5e5;
     box-shadow:
         inset 0 1px 0 #ffffff,
-        0 3px 6px rgba(0,0,0,0.12);
+        0 3px 6px rgba(0, 0, 0, 0.12);
     /* background: #c6e0a3; */
 }
 
@@ -118,10 +126,12 @@ body {
     width: 100%;
     border-collapse: collapse;
 }
-.forum-table td + td,
-.forum-table th + th {
+
+.forum-table td+td,
+.forum-table th+th {
     border-left: 1px solid #d2dfc2;
 }
+
 .forum-table th {
     text-align: left;
     font-weight: normal;
@@ -129,7 +139,7 @@ body {
     padding: 10px;
     background: #dde9cd;
     color: #425442;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .forum-table td {
@@ -140,10 +150,27 @@ body {
 }
 
 /* Columns */
-.col-forum { width: 55%;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }
-.col-topics { width: 10%; text-align: center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-.col-posts { width: 10%; text-align: center;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-.col-last { width: 25%;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+.col-forum {
+    width: 55%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.col-topics {
+    width: 10%;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.col-posts {
+    width: 10%;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.col-last {
+    width: 25%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 /* Forum title + desc */
 .forum-title {
@@ -169,8 +196,13 @@ body {
 }
 
 /* Alternating soft backgrounds */
-.row-1 { background: #eef5e5; }
-.row-2 { background: #e8f0dd; }
+.row-1 {
+    background: #eef5e5;
+}
+
+.row-2 {
+    background: #e8f0dd;
+}
 
 /* ====== Footer ====== */
 .footer {
@@ -179,8 +211,65 @@ body {
     text-align: center;
     padding: 200px 0 16px;
 }
+
 .footer a {
     color: #6b7d65;
     text-decoration: none;
     margin: 0 6px;
+}
+
+/* ====== Forum Header Component Styles ====== */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 4px 12px 4px 4px;
+    border-radius: 20px;
+    border: 1px solid #8fa57c;
+}
+
+.user-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(#f1f7e8, #cfe0b8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4b5f38;
+    border: 1px solid #8fa57c;
+}
+
+.user-avatar svg {
+    width: 16px;
+    height: 16px;
+}
+
+.greeting-container {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.greeting-text {
+    font-size: 11px;
+    color: #4b5f38;
+}
+
+.username-highlight {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a291a;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.logout-icon {
+    width: 14px;
+    height: 14px;
 }

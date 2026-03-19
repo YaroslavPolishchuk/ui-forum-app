@@ -1,17 +1,29 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
-import { User } from "../models/user.model";
+import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject, Observable } from "rxjs";
+import { UserDto } from "../models/user.model";
+import { of } from "rxjs";
+import { tap } from 'rxjs/operators';
+import { environment } from "../../environments/env";
 
 export interface LoginRequest {
-  username: string;
-  password: string;
+    username: string;
+    password: string;
 }
 
-export interface LoginResponse{
-    success:boolean;
-    user?:User;
-    accessToken?:string;
-    refreshToken?:string;
+export interface LoginResponse {
+    user: UserDto;
+    accessToken: string;
+    refreshToken: string;
+}
+export interface RegisterRequest {
+    username: string;
+    email: string;
+    password: string;
+}
+
+export interface RegisterResponse {
+    message: string;
 }
 
 @Injectable({
@@ -19,28 +31,52 @@ export interface LoginResponse{
 })
 
 export class AuthService {
+    private currentUserSubject = new BehaviorSubject<LoginResponse | null>(null);
+    currentUser=this.currentUserSubject.asObservable();
 
-    // private userSubject = new BehaviorSubject<User | null>(null);
-    // user$ = this.userSubject.asObservable();
-    currentUser:User|null=null;
-
-    async login(username: string, password:string): Promise<LoginResponse> {
-        if(username==='admin'&&password==='admin'){
-            const user:User={username};
-            this.currentUser=user;
-            return {
-                success:true,
-                user,
-                accessToken:'mock-access-token-405',
-                refreshToken:'mock-refresh-token-453'
-            };
+    constructor(private http: HttpClient) {
+        const savedUser = localStorage.getItem('user');
+        if (savedUser) {
+            try {
+                this.currentUserSubject.next(JSON.parse(savedUser));
+            } catch (e) {
+                this.currentUserSubject.next({ user: { userName: savedUser } } as any);
+            }
         }
-        //this.userSubject.next(user);
-        return { success: false };
     }
 
+    register(userData: RegisterRequest): Observable<RegisterResponse> {
+        let result = this.http.post<RegisterResponse>(`${environment.reg}`, userData);
+        return result;
+    }
+
+    login(credentials:any):Observable<LoginResponse>{
+        return this.http.post<LoginResponse>(`${environment.auth}`, credentials).pipe(
+            tap((response:LoginResponse) => {
+                localStorage.setItem('user', response.user.userName);
+                localStorage.setItem('accessToken', response.accessToken);    
+                this.currentUserSubject.next(response);       
+                })
+            );
+    }
+    isLoggedIn():Boolean {
+        return !!localStorage.getItem('accessToken');
+    }    
+    getusername():string {
+        const val = this.currentUserSubject.value as any;
+        return val?.user?.userName || '';
+    }
+  
+
+    // login(credentials:LoginRequest): Observable<LoginResponse> {        
+    //     let result = this.http.post<LoginResponse>(`${environment.auth}`, credentials)     
+    //     return result;
+    // }    
+
     logout(): void {
-        this.currentUser = null;
+        localStorage.removeItem('user');
+        localStorage.removeItem('accessToken');
+        this.currentUserSubject.next(null);
     }
 
     // get isLoggedIn(): boolean {

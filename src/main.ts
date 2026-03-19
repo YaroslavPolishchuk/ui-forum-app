@@ -3,11 +3,12 @@ import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
 import { ForumContainerComponent } from './app/forum-container/forum-container.component';
 import { RegisterComponent } from './app/register/register.component';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { apiInterceptor } from './app/services/api.interceptors';
 
 bootstrapApplication(AppComponent,{
   providers:[
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([apiInterceptor])),
     provideRouter([
       {path:'',component:ForumContainerComponent},
       {path:'register',component:RegisterComponent}

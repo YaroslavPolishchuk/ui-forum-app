@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink,RouterModule } from '@angular/router';
-import { AuthService, LoginResponse } from '../services/auth.service';
-import { Observable } from 'rxjs';
-import { User } from '../models/user.model';
-import { FormsModule } from '@angular/forms';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { AuthService, LoginRequest, LoginResponse, RegisterResponse } from '../services/auth.service';
+import { catchError, Observable } from 'rxjs';
+import { UserDto } from '../models/user.model';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
@@ -18,42 +18,49 @@ export class ForumHeaderComponent {
   loginValue = '';
   passwordValue = '';
   error = '';
+  isSubmitted=false;
 
-  constructor(public authService: AuthService, private router:Router) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
-  async onLoginClick(form:any): Promise<void> {
-    form.form.markAllAsTouched();
+  onLoginClick(form: NgForm): void {
+    this.isSubmitted=true;
     if (form.invalid) {
       console.log("Alert")
-      setTimeout(()=>{
-        form.form.markAsUntouched();
-      },2000)
+      setTimeout(() => {
+        this.isSubmitted=false;
+      }, 2000)
       return;
     }
-    const response: LoginResponse = await this.authService.login(this.loginValue, this.passwordValue);
-    if (!response.success) {
-      this.error = 'Неверный логин или пароль';
-      setTimeout(() => {
-        this.error = '';
-      }, 1000);
-      this.loginValue = '';
-      this.passwordValue = '';
+    const loginData:LoginRequest={
+      username:this.loginValue,
+      password:this.passwordValue
     }
+    this.authService.login(loginData).subscribe({
+        next:(response:LoginResponse) => {                 
+            console.log("Success");
+          },
+        error:(response)=>{
+          this.error=response.error;
+          setTimeout(() => {
+            this.error='';
+            form.reset();
+          }, 2000);
+        }
+      });
   }
 
-  onRegisterClick():void{
+  onRegisterClick(): void {
     this.router.navigate(['/register'])
   }
-
-  async registerClick():Promise<void>{
-
+  onLogoutClick(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
-  isLoggedIn(): boolean {
-    return !!this.authService.currentUser;
-  }
-  get username(): string {
-    return this.authService.currentUser?.username || '';
-  }
-
+  isLoggedIn(): Boolean {
+  return this.authService.isLoggedIn();
+}
+get username(): string {
+  return this.authService.getusername();
+}
 }

@@ -1,3 +1,6 @@
-export interface User {
-  username: string;
+export interface UserDto  {
+  id: number;
+  userName: string;
+  email: string;
+  role: string;
 }
