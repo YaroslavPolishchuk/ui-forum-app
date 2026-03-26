@@ -200,6 +200,15 @@ form.submitted input.ng-invalid {
     color: #2f4a2f;
 }
 
+.forum-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.forum-title a:hover {
+    text-decoration: underline;
+}
+
 .forum-desc {
     font-size: 12px;
     color: #6a7c64;
@@ -327,3 +336,57 @@ form.submitted input.ng-invalid {
     height: 18px;
     color: #28a745;
 }
+
+/* ====== Forum Topics Component Styles ====== */
+.forum-header {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.forum-header h2 {
+    color: #4a5c44;
+    margin: 0 0 5px 0;
+    font-size: 24px;
+}
+
+.topic-title {
+    margin-bottom: 5px;
+}
+
+.topic-title a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4a5c44;
+    text-decoration: none;
+}
+
+.topic-title a:hover {
+    text-decoration: underline;
+}
+
+.topic-desc {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.topic-author {
+    font-size: 12px;
+    color: #888;
+}
+
+.col-topic {
+    width: 65%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.col-answers {
+    width: 15%;
+    text-align: center;
+    vertical-align: middle !important;
+    font-weight: bold;
+    color: #4a5c44;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

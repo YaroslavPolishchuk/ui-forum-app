@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ForumHeaderComponent } from './forum-header/forum-header.component';
 import { ForumContainerComponent } from './forum-container/forum-container.component';
 import { RegisterComponent } from './register/register.component';
-
+import { ForumTopicsComponent } from './forum-topics/forum-topics.component';
 @Component({
   selector: 'app-root',
   imports: [ForumHeaderComponent, RouterModule],
@@ -18,5 +18,6 @@ export class AppComponent { }
 
 export const routes: Routes = [
   { path: '', component: ForumContainerComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'forum/:id', component: ForumTopicsComponent }
 ];

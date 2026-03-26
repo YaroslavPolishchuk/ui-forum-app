@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="forum-header" *ngIf="forum">
+    <h2>{{ forum.title }}</h2>
+    <p class="forum-desc">{{ forum.description }}</p>
+  </div>
+
+  <table class="forum-table">
+    <tr>
+      <th class="col-topic">Тема</th>
+      <th class="col-answers">Ответы</th>
+      <th class="col-last">Последнее сообщение</th>
+    </tr>
+
+    <tr *ngFor="let topic of topics; let i = index" [ngClass]="{'row-1': i % 2 === 0, 'row-2': i % 2 !== 0}">
+      <td class="col-topic">
+        <div class="topic-title">
+          <a [routerLink]="['/discussion', topic.id]">{{ topic.title }}</a>
+        </div>
+        <div class="topic-desc">
+          {{ (topic.content | slice:0:100) + (topic.content.length > 100 ? '...' : '') }}
+        </div>
+        <div class="topic-author">
+          Автор: {{ topic.authorName }} | {{ topic.createdAt | date: 'shortDate' }}
+        </div>
+      </td>
+      <td class="col-answers">
+        <!-- Default answers count mock -->
+        0
+      </td>
+      <td class="col-last">
+        <div class="last-meta">{{ topic.updatedAt | date: 'shortDate' }}</div>
+      </td>
+    </tr>
+  </table>
+
+  <div *ngIf="loading" style="padding: 20px; text-align: center; color: #6a7c64;">
+    Загрузка тем...
+  </div>
+  <div *ngIf="!loading && topics.length === 0" style="padding: 20px; text-align: center; color: #6a7c64;">
+    Пока нет доступных тем в этом форуме!
+  </div>
+</div>

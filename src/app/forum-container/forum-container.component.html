@@ -11,7 +11,7 @@
         <tr [ngClass]="{'row-1': i % 2 === 0, 'row-2': i % 2 !== 0}" *ngFor="let forum of forums; let i = index">
             <td class="col-forum">
                 <div class="forum-title">
-                    <a [routerLink]="['/forum', forum.id]">{{ forum.title }}</a>
+                    <div [routerLink]="['/forum', forum.id]" style="cursor: pointer;">{{ forum.title }}</div>
                 </div>
                 <div class="forum-desc">
                     {{ forum.description }}
