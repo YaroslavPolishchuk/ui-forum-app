@@ -21,7 +21,7 @@ export class ForumService {
   }
 
   getTopicsByForum(forumId: number): Observable<Topic[]> {
-    return this.http.get<Topic[]>(`${environment.discussions}?forumId=${forumId}`);
+    return this.http.get<Topic[]>(`${environment.discussions}/${forumId}`);
   }
 
   createTopic(topic: Partial<Topic>): Observable<Topic> {

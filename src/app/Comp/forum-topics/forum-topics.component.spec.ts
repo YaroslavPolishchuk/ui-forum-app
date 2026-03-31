@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
 import { ForumTopicsComponent } from './forum-topics.component';
-import { ForumService } from '../services/forum.service';
+import { ForumService } from '../../services/forum.service';
 
 describe('ForumTopicsComponent', () => {
   let component: ForumTopicsComponent;
@@ -22,7 +22,7 @@ describe('ForumTopicsComponent', () => {
         { provide: ActivatedRoute, useValue: { paramMap: of({ get: () => '1' }) } }
       ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ForumTopicsComponent);
     component = fixture.componentInstance;

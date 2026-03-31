@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
-import { ForumService } from '../services/forum.service';
-import { Topic } from '../models/topic.model';
-import { Forum } from '../models/forum.model';
+import { ForumService } from '../../services/forum.service';
+import { AuthService } from '../../services/auth.service';
+import { Topic } from '../../models/topic.model';
+import { Forum } from '../../models/forum.model';
 
 @Component({
   selector: 'app-forum-topics',
@@ -19,6 +20,7 @@ export class ForumTopicsComponent implements OnInit {
   loading: boolean = true;
 
   constructor(
+    public authService: AuthService,
     private forumService: ForumService,
     private route: ActivatedRoute
   ) { }
@@ -36,12 +38,12 @@ export class ForumTopicsComponent implements OnInit {
   loadForumData(): void {
     this.loading = true;
 
-    this.forumService.getForumById(this.forumId).subscribe({
-      next: (data: Forum) => {
-        this.forum = data;
-      },
-      error: (error: any) => console.error('Error loading forum details', error)
-    });
+    // this.forumService.getForumById(this.forumId).subscribe({
+    //   next: (data: Forum) => {
+    //     this.forum = data;
+    //   },
+    //   error: (error: any) => console.error('Error loading forum details', error)
+    // });
 
     this.forumService.getTopicsByForum(this.forumId).subscribe({
       next: (data: Topic[]) => {

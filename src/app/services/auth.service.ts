@@ -32,7 +32,8 @@ export interface RegisterResponse {
 
 export class AuthService {
     private currentUserSubject = new BehaviorSubject<LoginResponse | null>(null);
-    currentUser=this.currentUserSubject.asObservable();
+    currentUser = this.currentUserSubject.asObservable();
+
 
     constructor(private http: HttpClient) {
         const savedUser = localStorage.getItem('user');
@@ -50,29 +51,23 @@ export class AuthService {
         return result;
     }
 
-    login(credentials:any):Observable<LoginResponse>{
+    login(credentials: any): Observable<LoginResponse> {
         return this.http.post<LoginResponse>(`${environment.auth}`, credentials).pipe(
-            tap((response:LoginResponse) => {
+            tap((response: LoginResponse) => {
                 localStorage.setItem('user', response.user.userName);
-                localStorage.setItem('accessToken', response.accessToken);    
-                this.currentUserSubject.next(response);       
-                })
-            );
+                localStorage.setItem('accessToken', response.accessToken);
+                this.currentUserSubject.next(response);
+            })
+        );
     }
-    isLoggedIn():Boolean {
-        return !!localStorage.getItem('accessToken');
-    }    
-    getusername():string {
+    isLoggedIn(): Boolean {
+        return this.currentUserSubject.value !== null;
+        // return !!localStorage.getItem('accessToken');
+    }
+    getusername(): string {
         const val = this.currentUserSubject.value as any;
         return val?.user?.userName || '';
     }
-  
-
-    // login(credentials:LoginRequest): Observable<LoginResponse> {        
-    //     let result = this.http.post<LoginResponse>(`${environment.auth}`, credentials)     
-    //     return result;
-    // }    
-
     logout(): void {
         localStorage.removeItem('user');
         localStorage.removeItem('accessToken');

@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
-import { AuthService, LoginRequest, LoginResponse, RegisterResponse } from '../services/auth.service';
+import { AuthService, LoginRequest, LoginResponse, RegisterResponse } from '../../services/auth.service';
 import { catchError, Observable } from 'rxjs';
-import { UserDto } from '../models/user.model';
+import { UserDto } from '../../models/user.model';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -14,13 +14,16 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, FormsModule, RouterLink, RouterModule]
 })
 export class ForumHeaderComponent {
-
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  user$ = this.authService.currentUser;
   loginValue = '';
   passwordValue = '';
   error = '';
   isSubmitted = false;
 
-  constructor(public authService: AuthService, private router: Router) { }
+
+  constructor() { }
 
   onLoginClick(form: NgForm): void {
     this.isSubmitted = true;

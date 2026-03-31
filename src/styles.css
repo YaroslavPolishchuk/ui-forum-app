@@ -389,4 +389,119 @@ form.submitted input.ng-invalid {
     font-weight: bold;
     color: #4a5c44;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+}
+
+/* ====== Action Panel (Create Topic) ====== */
+.action-panel {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 6px;
+    padding: 5px 5px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.btn-create-topic {
+    border: 1px solid #8fa57c;
+    background: linear-gradient(#f1f7e8, #cfe0b8);
+    box-shadow: inset 0 1px 0 #ffffff, 0 1px 2px rgba(0, 0, 0, 0.15);
+    color: #2f4a2f;
+    padding: 6px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    transition: all 0.2s;
+}
+
+.btn-create-topic:hover {
+    background: linear-gradient(#f5f9f0, #d5e5c0);
+}
+
+.btn-create-topic:active {
+    background: linear-gradient(#cfe0b8, #f1f7e8);
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ====== Create Topic Form ====== */
+.create-topic-container {
+  padding: 20px;
+}
+
+.create-topic-header {
+  background: linear-gradient(to right, #e8f0dd, #f5f9f0);
+  padding: 16px 20px;
+  border-left: 5px solid #8fa57c;
+  border-radius: 4px;
+  margin-bottom: 25px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.create-topic-header h2 {
+  color: #2f4a2f;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.create-topic-header p {
+  color: #6a7c64;
+  margin: 5px 0 0 0;
+  font-size: 13px;
+}
+
+.create-topic-form {
+  margin-top: 15px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #2f4a2f;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b9c9a5;
+  border-radius: 4px;
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #8fa57c;
+  box-shadow: 0 0 0 2px rgba(143, 165, 124, 0.2);
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #425442;
+  border: 1px solid #c8d8b3;
+  padding: 6px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+  background: #e8f0dd;
+}

@@ -4,6 +4,6 @@ export const environment = {
     auth: '/auth/login',
     reg: '/auth/register',
     forums: '/forum',
-    discussions: '/discussions',
-    messages: '/messages'
+    discussions: '/discussion',
+    messages: '/message'
 };

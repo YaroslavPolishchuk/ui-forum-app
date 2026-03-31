@@ -1,0 +1,26 @@
+<div class="container create-topic-container">
+  <div class="create-topic-header">
+    <h2>Создать новую тему</h2>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #topicForm="ngForm" class="create-topic-form">
+    <div class="form-group">
+      <label for="title">Название темы</label>
+      <input type="text" id="title" name="title" class="form-control" [(ngModel)]="topic.title" required
+        placeholder="Введите название темы" />
+    </div>
+
+    <div class="form-group">
+      <label for="content">Сообщение</label>
+      <textarea id="content" name="content" class="form-control" [(ngModel)]="topic.content" required rows="8"
+        placeholder="Введите текст сообщения..."></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-create-topic" [disabled]="topicForm.invalid || isSubmitting">
+        {{ isSubmitting ? 'Отправка...' : 'Создать' }}
+      </button>
+      <button type="button" class="btn-cancel" [routerLink]="['/forum', forumId]">Отмена</button>
+    </div>
+  </form>
+</div>

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ForumHeaderComponent } from './forum-header/forum-header.component';
-import { ForumContainerComponent } from './forum-container/forum-container.component';
+import { ForumHeaderComponent } from './Comp/forum-header/forum-header.component';
+import { ForumContainerComponent } from './Comp/forum-container/forum-container.component';
 import { RegisterComponent } from './register/register.component';
-import { ForumTopicsComponent } from './forum-topics/forum-topics.component';
+import { ForumTopicsComponent } from './Comp/forum-topics/forum-topics.component';
 @Component({
   selector: 'app-root',
   imports: [ForumHeaderComponent, RouterModule],

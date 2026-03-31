@@ -4,6 +4,10 @@
     <p class="forum-desc">{{ forum.description }}</p>
   </div>
 
+  <div class="action-panel" *ngIf="authService.currentUser | async as user;">
+    <button class="btn-create-topic" [routerLink]="['/forum', forumId, 'create-topic']">Создать новую тему</button>
+  </div>
+
   <table class="forum-table">
     <tr>
       <th class="col-topic">Тема</th>
@@ -37,6 +41,6 @@
     Загрузка тем...
   </div>
   <div *ngIf="!loading && topics.length === 0" style="padding: 20px; text-align: center; color: #6a7c64;">
-    Пока нет доступных тем в этом форуме!
+    Пока на этом форуме нет тем!
   </div>
 </div>

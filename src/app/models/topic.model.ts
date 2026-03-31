@@ -1,9 +1,9 @@
 export interface Topic {
-    id: number;
+    readonly id: number;
     forumId: number;
     title: string;
     content: string;
     authorName: string;
-    createdAt: Date | string;
-    updatedAt: Date | string;
+    readonly createdAt: Date | string;
+    readonly updatedAt: Date | string;
 }
